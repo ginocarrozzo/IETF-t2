@@ -1,4 +1,4 @@
-# IETF-felix
+# IETF-t2
 
 generate TXT file for submission at 
 http://xml2rfc.ietf.org/
