@@ -168,13 +168,13 @@
       </section>
       <section title="Orchestration Framework">
         <t>
-          The VNF orchestration framework proposed in this document aims to provide automated functions for the deployment, provisioning and composition of resilient VNFs within operators' datacentres. Figure 1 presents the high level architecture, including building blocks and functional components.
+          The VNF orchestration framework proposed in this document aims to provide automated functions for the deployment, provisioning and composition of resilient VNFs within operators' datacentres. Figure <xref target='fig-vnf' /> presents the high level architecture, including building blocks and functional components.
         </t>
         <t>
           This VNF orchestration framework is built around two key components: the orchestrator and the SDN controller. The orchestrator includes all the functions related to the management, coordination, and control of VNFs instantiation, configuration and composition. It is the component at the highest level of the architecture and represents the access point to the VNF orchestration framework for the operator. On the other hand, the SDN controller provides dynamic traffic steering and flexible network provisioning within the datacenter as needed by the VNF chains. The basic controller functions are augmented by a set of enhanced network applications deployed on top, that might be themselves control and management VNFs for operator use (i.e. not related to customers and users functions).
         </t>
         <t>
-          Therefore, the architecture depicted in Figure 1 is a practical demonstration of how SDN and NFV technologies and concepts can be integrated to provide substantial benefits to network operators in terms of robustness, ease of management, control and provisioning of their network infrastructures and services. SDN and NFV are clearly complementary solutions for enabling virtualisation of network infrastructures, services and functions while supporting dynamic and flexible network traffic engineering. SDN focuses on network programmability, traffic steering and multi-tenancy by means of a common, open, and dynamic abstraction of network resources. NFV targets a progressive migration of network elements, network appliances and fixed function boxes into VMs that can be ran on commodity hardware, enabling the benefits of cloud and datacentres to be applied to network functions.
+          Therefore, the architecture depicted in Figure <xref target='fig-vnf' /> is a practical demonstration of how SDN and NFV technologies and concepts can be integrated to provide substantial benefits to network operators in terms of robustness, ease of management, control and provisioning of their network infrastructures and services. SDN and NFV are clearly complementary solutions for enabling virtualisation of network infrastructures, services and functions while supporting dynamic and flexible network traffic engineering. SDN focuses on network programmability, traffic steering and multi-tenancy by means of a common, open, and dynamic abstraction of network resources. NFV targets a progressive migration of network elements, network appliances and fixed function boxes into VMs that can be ran on commodity hardware, enabling the benefits of cloud and datacentres to be applied to network functions.
         </t>
         <figure title="VNF Orchestration Framework Architecture." align="center" anchor="fig-vnf">
           <preamble></preamble>
@@ -228,7 +228,7 @@
           <postamble></postamble>
         </figure>
         <!-- t>
-          The following sub-sections provide details on each component of the VNF orchestration framework architecture, while their interactions are depicted in Figure 1. The VNF pool manager is described in a dedicated section 4.3 as the main enabler of resiliency control functions for chained VNFs.
+          The following sub-sections provide details on each component of the VNF orchestration framework architecture, while their interactions are depicted in Figure <xref target='fig-vnf' />. The VNF pool manager is described in a dedicated section 4.3 as the main enabler of resiliency control functions for chained VNFs.
         </t -->
         <section title="Orchestrator">
           <t>
@@ -238,7 +238,7 @@
             Therefore the VNF orchestrator provides a consistent way to access the system and provision chains of VNFs to the operator. It exposes a set of primitives to instantiate, configure VNFs and compose them according to the specific service chain requirements. Practically, it aims at enabling an efficient and dynamic management of operator's infrastructure resources with great flexibility by means of a consistent set of APIs.
           </t>
           <t>
-            To enable this, the orchestrator can be seen as a composition of several internal functionalities, each providing a given coordination function needed to orchestrate the lower layer control and management functions depicted in Figure 1 (i.e.  VNF chain configuration, VNF pool provisioning, etc.). In practice, the orchestrator needs to include at least an internal component to manage the instantiation and configuration of stand-alone VNFs (e.g. implemented by a self-contained VM) that might be directly interfaced with the physical servers in the datacenter. And also a dedicated component for programmatic coordination and provisioning of VNF chains is needed to properly orchestrate the traffic steering through VNFs belonging to the same service chain. This should also provide multi-tenant functionalities and maintain isolation across VNF chains deployed for different customers. It is then clear that the VNF orchestrator is the overall coordinator of the proposed framework, and it drives all the lower layer components that implement the actual control logic. 
+            To enable this, the orchestrator can be seen as a composition of several internal functionalities, each providing a given coordination function needed to orchestrate the lower layer control and management functions depicted in Figure <xref target='fig-vnf' /> (i.e.  VNF chain configuration, VNF pool provisioning, etc.). In practice, the orchestrator needs to include at least an internal component to manage the instantiation and configuration of stand-alone VNFs (e.g. implemented by a self-contained VM) that might be directly interfaced with the physical servers in the datacenter. And also a dedicated component for programmatic coordination and provisioning of VNF chains is needed to properly orchestrate the traffic steering through VNFs belonging to the same service chain. This should also provide multi-tenant functionalities and maintain isolation across VNF chains deployed for different customers. It is then clear that the VNF orchestrator is the overall coordinator of the proposed framework, and it drives all the lower layer components that implement the actual control logic. 
           </t>
         </section>
         <section title="SDN Controller">
@@ -271,7 +271,7 @@
       </section>
       <section title="Resiliency Control Functions for Chained VNFs">
         <t>
-          In the proposed orchestration architecture, the resiliency control functions that have been identified as a key feature for a flexible and dynamic provisioning of chained VNF services are implemented by the VNF pool manager depicted in Figure 1. It is the entity that manages and coordinates VNFs reliability providing high availability and resiliency features at both stand-alone and chained VNFs level.
+          In the proposed orchestration architecture, the resiliency control functions that have been identified as a key feature for a flexible and dynamic provisioning of chained VNF services are implemented by the VNF pool manager depicted in Figure <xref target='fig-vnf' />. It is the entity that manages and coordinates VNFs reliability providing high availability and resiliency features at both stand-alone and chained VNFs level.
         </t>
         <t>
           The deployment of VNF based services requires moving the resiliency capabilities and mechanisms from physical network devices (which are typically highly available and often specialized) to entities (like self-contained VMs) running VNFs in the context of pools of virtualised resources.
@@ -291,7 +291,7 @@
               each type of end-to-end service (e.g. web, financial backend, video streaming, etc.) has its own specific resiliency requirements for the related VNFs. While for operators it is not easy to achieve service resiliency SLAs without building to peak, a basic set of VNF resiliency classes can be defined to identify some metrics, such as: if a VNF needs status synchronization; fault detection and restoration time objective (e.g. real-time); service availability metrics; service quality metrics; service latency metrics for VNF chain components.</t>
           </list></t>
         <t>
-          The aim of the VNF orchestration presented in this document is to address the above requirements by introducing the VNF pool manager that follows the principles of the IETF VNFPOOL architecture [I-D.zong-vnfpool-arch], where a pool manager coordinates the reliability of stand-alone VNFs, by selecting the active instance and interacting with the Service Control Entity for consistent end-to-end service chain reliability and provisioning. In the VNF orchestration architecture illustrated in Figure 1, the Service Control Entity is implemented by the combination of the orchestrator (for overall coordination of service chains) and the VNF chain configuration (for actual provisioning and coordination of individual service chains).
+          The aim of the VNF orchestration presented in this document is to address the above requirements by introducing the VNF pool manager that follows the principles of the IETF VNFPOOL architecture [I-D.zong-vnfpool-arch], where a pool manager coordinates the reliability of stand-alone VNFs, by selecting the active instance and interacting with the Service Control Entity for consistent end-to-end service chain reliability and provisioning. In the VNF orchestration architecture illustrated in Figure <xref target='fig-vnf' />, the Service Control Entity is implemented by the combination of the orchestrator (for overall coordination of service chains) and the VNF chain configuration (for actual provisioning and coordination of individual service chains).
         </t>
         <t>
           Different deployment models may exist for the VNF pool manager: a dedicated manager for each VNF chain, or a single one for all the chains. 
@@ -328,10 +328,7 @@
     </section>
     <section anchor="Acknowledgements" title="Acknowledgements">
       <t>
-        This work has been partially supported by the European Commission through the FP7 ICT Trilogy2 project (Building the Liquid Net, grant agreement no:317756).
-      </t>
-      <t>
-        The views expressed here are those of the authors only. The European Commission is not liable for any use that may be made of the information in this document.
+        This work has been partially supported by the European Commission through the FP7 ICT Trilogy2 project (Building the Liquid Net, grant agreement no:317756). The views expressed here are those of the authors only. The European Commission is not liable for any use that may be made of the information in this document.
       </t>
       <t>
         Authors would like to thank G. Carrozzo and G. Landi from Nextworks for valuable discussions and contributions to the topics addressed in this document.
@@ -358,3 +355,4 @@
     </references>
   </back>
 </rfc>
+
