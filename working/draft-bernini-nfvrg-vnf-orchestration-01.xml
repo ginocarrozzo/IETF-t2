@@ -196,15 +196,15 @@
                      +----------------------------------------------+
                      |                 SDN Controller               |
                      +--------------+---+----+---------------+------+
-+.......................+           |   |    |              |
-:           +--------+  \           |   |    |              +-----+
-:           |+-------++ :|    +-----+---+----+----+               |
-:           +|       || :\    | +-----------------+-+         +---+----+
-:          /|| VNF1  || : |   | | +---------------+-+-+       |        |
-:         / ||       || :..+  | | |    Virtual    | | +-------+  Edge  |
-:        /  ++-------+| :  :  | | |   Switch(es)  | | +-------+ Router |
-:       /    +---+----+ :  :| +-+-+---------------+ | |       |        |
-:      /         |      :  :\   +-+-----------------+ |       +--------+
++.......................+           |   |    |               |
+:           +--------+  \           |   |    |               +-+
+:           |+-------++ :|    +-----+---+----+----+            |
+:           +|       || :\    | +-----------------+-+      +---+----+
+:          /|| VNF1  || : |   | | +---------------+-+-+    |        |
+:         / ||       || :..+  | | |    Virtual    | | +----+  Edge  |
+:        /  ++-------+| :  :  | | |   Switch(es)  | | +----+ Router |
+:       /    +---+----+ :  :| +-+-+---------------+ | |    |        |
+:      /         |      :  :\   +-+-----------------+ |    +--------+
 :  +--+-----+    |      :  : |    +-----+---+---+-----+
 :  |+-------++   |      :  : \          |   |   |
 :  ||       ||   |      :  :  |         |   |   |
@@ -291,7 +291,8 @@
               each type of end-to-end service (e.g. web, financial backend, video streaming, etc.) has its own specific resiliency requirements for the related VNFs. While for operators it is not easy to achieve service resiliency SLAs without building to peak, a basic set of VNF resiliency classes can be defined to identify some metrics, such as: if a VNF needs status synchronization; fault detection and restoration time objective (e.g. real-time); service availability metrics; service quality metrics; service latency metrics for VNF chain components.</t>
           </list></t>
         <t>
-          The aim of the VNF orchestration presented in this document is to address the above requirements by introducing the VNF pool manager that follows the principles of the IETF VNFPOOL architecture [I-D.zong-vnfpool-arch], where a pool manager coordinates the reliability of stand-alone VNFs, by selecting the active instance and interacting with the Service Control Entity for consistent end-to-end service chain reliability and provisioning. In the VNF orchestration architecture illustrated in Figure <xref target='fig-vnf' />, the Service Control Entity is implemented by the combination of the orchestrator (for overall coordination of service chains) and the VNF chain configuration (for actual provisioning and coordination of individual service chains).
+          The aim of the VNF orchestration presented in this document is to address the above requirements by introducing the VNF pool manager that follows the principles of the IETF VNFPOOL architecture <xref target='I-D.zong-vnfpool-problem-statement' /> 
+, where a pool manager coordinates the reliability of stand-alone VNFs, by selecting the active instance and interacting with the Service Control Entity for consistent end-to-end service chain reliability and provisioning. In the VNF orchestration architecture illustrated in Figure <xref target='fig-vnf' />, the Service Control Entity is implemented by the combination of the orchestrator (for overall coordination of service chains) and the VNF chain configuration (for actual provisioning and coordination of individual service chains).
         </t>
         <t>
           Different deployment models may exist for the VNF pool manager: a dedicated manager for each VNF chain, or a single one for all the chains. 
